@@ -8,6 +8,7 @@ public class ThirdPersonCam : MonoBehaviour
     public Transform orientation;
     public Transform player;
     public Transform playerObj;
+    public Renderer playerCapsule;
     public Rigidbody rb;
 
     public float rotationSpeed;
@@ -19,6 +20,9 @@ public class ThirdPersonCam : MonoBehaviour
     public GameObject topDownCam;
 
     public CameraStyle currentStyle;
+
+    public Material opaque;
+    public Material transparent;
     public enum CameraStyle
     {
         Basic,
@@ -38,6 +42,9 @@ public class ThirdPersonCam : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic);
         if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CameraStyle.Combat);
         if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchCameraStyle(CameraStyle.Topdown);
+        if (Input.GetKeyDown(KeyCode.Alpha4)) SwitchMaterial(opaque);
+        if (Input.GetKeyDown(KeyCode.Alpha5)) SwitchMaterial(transparent);
+
 
         // rotate orientation
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
@@ -74,5 +81,10 @@ public class ThirdPersonCam : MonoBehaviour
         if (newStyle == CameraStyle.Topdown) topDownCam.SetActive(true);
 
         currentStyle = newStyle;
+    }
+
+    void SwitchMaterial(Material mat)
+    {
+        playerCapsule.material = mat;
     }
 }

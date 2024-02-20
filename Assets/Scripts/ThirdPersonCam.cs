@@ -2,6 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// Created By: Jaysson Solano
+///     Implemeted feature to toggle through different camera views (basic, top-down, over-the-shoulder)
+///     and toggle player transparency.
+/// 
+/// Modified By: Sophia Wu 
+/// Date:        10/30/2023
+///     Modified behavior to toggle camera style using F1, F2, and F3.
+///     Modified behavior to toggle player stealth (transparency) using 1.
+
+
 public class ThirdPersonCam : MonoBehaviour
 {
     [Header("References")]
@@ -23,6 +33,8 @@ public class ThirdPersonCam : MonoBehaviour
 
     public Material opaque;
     public Material transparent;
+    private bool stealthed;
+
     public enum CameraStyle
     {
         Basic,
@@ -34,16 +46,28 @@ public class ThirdPersonCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        stealthed = false;
     }
 
     private void Update()
     {
         // switch styles
-        if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CameraStyle.Combat);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchCameraStyle(CameraStyle.Topdown);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) SwitchMaterial(opaque);
-        if (Input.GetKeyDown(KeyCode.Alpha5)) SwitchMaterial(transparent);
+        //if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic);
+        //if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CameraStyle.Combat);
+        //if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchCameraStyle(CameraStyle.Topdown);
+        //if (Input.GetKeyDown(KeyCode.Alpha4)) SwitchMaterial(opaque);
+        //if (Input.GetKeyDown(KeyCode.Alpha5)) SwitchMaterial(transparent);
+
+        // F1 - basic, F2 - combat, F3 - topdown
+        // 1  - toggle player transparency/stealth
+        if (Input.GetKeyDown(KeyCode.F1)) SwitchCameraStyle(CameraStyle.Basic);
+        if (Input.GetKeyDown(KeyCode.F2)) SwitchCameraStyle(CameraStyle.Combat);
+        if (Input.GetKeyDown(KeyCode.F3)) SwitchCameraStyle(CameraStyle.Topdown);
+        if (Input.GetKeyDown(KeyCode.Alpha1)) { 
+            if (!stealthed) SwitchMaterial(opaque);
+            else SwitchMaterial(transparent);
+        } 
 
 
         // rotate orientation
@@ -86,5 +110,6 @@ public class ThirdPersonCam : MonoBehaviour
     void SwitchMaterial(Material mat)
     {
         playerCapsule.material = mat;
+        stealthed = !stealthed;
     }
 }

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Alchemy Table
+* source:	https://sketchfab.com/3d-models/alchemy-table-57450896404c4450968189a7b0a8befe
+* author:	KrisWT (https://sketchfab.com/KrisWT)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Alchemy Table" (https://sketchfab.com/3d-models/alchemy-table-57450896404c4450968189a7b0a8befe) by KrisWT (https://sketchfab.com/KrisWT) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
